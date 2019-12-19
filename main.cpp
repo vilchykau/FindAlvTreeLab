@@ -109,9 +109,7 @@ private:
 		if(!node){
 			return nullptr;
 		}
-		TreeNode* out = new TreeNode{Copy(node->left),
-									Copy(node->right),
-									node->value};
+		TreeNode* out = new TreeNode{Copy(node->left),Copy(node->right),node->value};
 		return out;
 	}
 
@@ -132,41 +130,41 @@ private:
 		GetElements(node->right, l);
 	}
 
-	void Insert(int insert_value, TreeNode** p_element){
-		if(*p_element){
-			if((*p_element)->value < insert_value){
-				Insert(insert_value, &(*p_element)->right);
-			}else if(insert_value < (*p_element)->value){
-				Insert(insert_value, &(*p_element)->left);
-			}
-		}else{
-			*p_element = new TreeNode{nullptr, nullptr, insert_value};
-		}
+    void Insert(int insert_value, TreeNode** p_element){
+    	if(*p_element){
+	    if((*p_element)->value < insert_value){
+	        Insert(insert_value, &(*p_element)->right);
+	    }else if(insert_value < (*p_element)->value){
+	        Insert(insert_value, &(*p_element)->left);
+	    }
+	}else{
+            *p_element = new TreeNode{nullptr, nullptr, insert_value};
 	}
+    }
 
 
-	TreeNode* root;
+    TreeNode* root;
 };
 
 std::ostream& operator<<(std::ostream& stream, const BinTree& tree){
-	std::cout << tree.ToString();
-	return stream;
+    std::cout << tree.ToString();
+    return stream;
 }
 
 int main(){
     BinTree tree;
-	tree.Insert(86);
-	tree.Insert(50);
-	tree.Insert(30);
-	tree.Insert(60);
-	tree.Insert(100);
-	tree.Insert(90);
-	tree.Insert(95);
-	tree.Insert(93);
-	tree.Insert(120);
-	tree.Insert(115);
-	tree.Insert(130);
+    tree.Insert(86);
+    tree.Insert(50);
+    tree.Insert(30);
+    tree.Insert(60);
+    tree.Insert(100);
+    tree.Insert(90);
+    tree.Insert(95);
+    tree.Insert(93);
+    tree.Insert(120);
+    tree.Insert(115);
+    tree.Insert(130);
 
-	std::cout << tree.FindMaxAvl();
+    std::cout << tree.FindMaxAvl();
     return 0;
 }
